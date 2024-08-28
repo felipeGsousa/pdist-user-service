@@ -3,6 +3,8 @@ package br.edu.ifpb.user_service.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashMap;
+
 @Document(collection = "users")
 public class User {
 
@@ -13,6 +15,8 @@ public class User {
     private String email;
     private boolean emailVerified;
     private String profilePictureUrl;
+    private HashMap<String, String> likedPosts;
+    private HashMap<String, String> likedComments;
 
     public User() {
     }
@@ -59,5 +63,37 @@ public class User {
 
     public void setProfilePictureUrl(String profilePictureUrl) {
         this.profilePictureUrl = profilePictureUrl;
+    }
+
+    public HashMap<String, String> getLikedPosts() {
+        return likedPosts;
+    }
+
+    public void setLikedPosts(HashMap<String, String> likedPosts) {
+        this.likedPosts = likedPosts;
+    }
+
+    public void likePost(String postId, String like) {
+        this.likedPosts.put(postId, like);
+    }
+
+    public void rmLikedPost(String postId) {
+        this.likedPosts.remove(postId);
+    }
+
+    public HashMap<String, String> getLikedComments() {
+        return likedComments;
+    }
+
+    public void setLikedComments(HashMap<String, String> likedComments) {
+        this.likedComments = likedComments;
+    }
+
+    public void likeComment(String commentId, String like) {
+        this.likedComments.put(commentId, like);
+    }
+
+    public void rmLikedComment(String commentId) {
+        this.likedComments.remove(commentId);
     }
 }
