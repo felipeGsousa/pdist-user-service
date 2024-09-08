@@ -14,6 +14,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUser(@RequestParam String id) {
+        try {
+            return userService.getUser(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/post/{id}")
     public ResponseEntity<?> likePost (@RequestParam String id, @RequestBody LikeDto likeDto) {
         try {

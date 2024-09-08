@@ -60,9 +60,4 @@ public class AuthController {
             return new ResponseEntity<>("Authentication error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/")
-    public ResponseEntity<?> getResponse() {
-        return new ResponseEntity<>("All working good", HttpStatus.OK);
-    }
 }
