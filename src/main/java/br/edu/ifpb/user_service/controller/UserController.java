@@ -23,8 +23,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/post/{id}")
-    public ResponseEntity<?> likePost (@RequestParam String id, @RequestBody LikeDto likeDto) {
+    @PostMapping(path = "/post/{id}")
+    public ResponseEntity<?> likePost (@PathVariable String id, @RequestBody LikeDto likeDto) {
         try {
             return userService.likePost(id, likeDto);
         } catch (Exception e) {
@@ -32,8 +32,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/comment/{id}")
-    public ResponseEntity<?> likeComment (@RequestParam String id, @RequestBody LikeDto likeDto) {
+    @PostMapping(path = "/comment/{id}")
+    public ResponseEntity<?> likeComment (@PathVariable String id, @RequestBody LikeDto likeDto) {
         try {
             return userService.likeComment(id, likeDto);
         } catch (Exception e) {
