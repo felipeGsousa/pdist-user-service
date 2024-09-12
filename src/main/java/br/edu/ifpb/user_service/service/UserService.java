@@ -34,7 +34,10 @@ public class UserService {
 
     public ResponseEntity<?> likePost(String id, LikeDto likeDto){
         User user = userRepository.findById(id).get();
-        String type = user.getLikedPosts().get(likeDto.getId());
+        String type = "";
+        if (!user.getLikedPosts().isEmpty()) {
+            type = user.getLikedPosts().get(likeDto.getId());
+        }
         HashMap<String, Object> response = new HashMap<>();
         response.put("id", likeDto.getId());
 
@@ -87,7 +90,10 @@ public class UserService {
 
     public ResponseEntity<?> likeComment(String id, LikeDto likeDto){
         User user = userRepository.findByEmail(id).get();
-        String type = user.getLikedComments().get(likeDto.getId());
+        String type = "";
+        if (!user.getLikedPosts().isEmpty()) {
+            type = user.getLikedPosts().get(likeDto.getId());
+        }
         HashMap<String, Object> response = new HashMap<>();
         response.put("id", likeDto.getId());
 
