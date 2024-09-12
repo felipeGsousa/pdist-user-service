@@ -93,10 +93,11 @@ public class UserService {
         String type = "";
         if (!user.getLikedPosts().isEmpty()) {
             type = user.getLikedPosts().get(likeDto.getId());
+            System.out.println("Chegou aqui");
         }
         HashMap<String, Object> response = new HashMap<>();
         response.put("id", likeDto.getId());
-
+        System.out.println("Chegou aqui");
         if (type == null) {
             user.likeComment(likeDto.getId(), likeDto.getType());
             if (likeDto.getType().equals("like")) {
