@@ -89,15 +89,13 @@ public class UserService {
     }
 
     public ResponseEntity<?> likeComment(String id, LikeDto likeDto){
-        User user = userRepository.findByEmail(id).get();
+        User user = userRepository.findById(id).get();
         String type = "";
         if (!user.getLikedPosts().isEmpty()) {
             type = user.getLikedPosts().get(likeDto.getId());
-            System.out.println("Chegou aqui");
         }
         HashMap<String, Object> response = new HashMap<>();
         response.put("id", likeDto.getId());
-        System.out.println("Chegou aqui");
         if (type == null) {
             user.likeComment(likeDto.getId(), likeDto.getType());
             if (likeDto.getType().equals("like")) {
