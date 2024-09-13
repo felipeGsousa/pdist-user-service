@@ -22,12 +22,12 @@ public class LikeProducer {
     @Value(value = "${broker.queue.comment.like}")
     private String commentLikeRoutingKey;
 
-    public void likePost(HashMap<String, Object> likeAction){
-        rabbitTemplate.convertAndSend("", postLikeRoutingKey, likeAction);
+    public Object likePost(HashMap<String, Object> likeAction){
+        return rabbitTemplate.convertSendAndReceive("", postLikeRoutingKey, likeAction);
     }
 
-    public void likeComment(HashMap<String, Object> likeAction){
-        rabbitTemplate.convertAndSend("", commentLikeRoutingKey, likeAction);
+    public Object likeComment(HashMap<String, Object> likeAction){
+        return rabbitTemplate.convertSendAndReceive("", commentLikeRoutingKey, likeAction);
     }
 
 }

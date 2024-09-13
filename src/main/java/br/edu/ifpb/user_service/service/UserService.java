@@ -81,11 +81,11 @@ public class UserService {
                 response.put("subDislike", false);
             }
         }
-        likeProducer.likePost(response);
+        Object likeResponse = likeProducer.likePost(response);
 
-        User savedUser = userRepository.save(user);
+        userRepository.save(user);
 
-        return new ResponseEntity<>(savedUser, HttpStatus.OK);
+        return new ResponseEntity<>(likeResponse, HttpStatus.OK);
     }
 
     public ResponseEntity<?> likeComment(String id, LikeDto likeDto){
@@ -139,10 +139,10 @@ public class UserService {
             user.likeComment(likeDto.getId(), likeDto.getType());
         }
 
-        likeProducer.likeComment(response);
+        Object likeResponse = likeProducer.likeComment(response);
 
-        User savedUser = userRepository.save(user);
+        userRepository.save(user);
 
-        return new ResponseEntity<>(savedUser, HttpStatus.OK);
+        return new ResponseEntity<>(likeResponse, HttpStatus.OK);
     }
 }
