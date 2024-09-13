@@ -92,7 +92,7 @@ public class UserService {
         User user = userRepository.findById(id).get();
         String type = "";
         if (!user.getLikedPosts().isEmpty()) {
-            type = user.getLikedPosts().get(likeDto.getId());
+            type = user.getLikedComments().get(likeDto.getId());
         }
         HashMap<String, Object> response = new HashMap<>();
         response.put("id", likeDto.getId());
